@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আমাদের ভালোবাসার চিঠি 💌</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', 'SolaimanLipi', 'Kalpurush', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at center, #fce7f3 0%, #fbcfe8 60%, #f472b6 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            overflow-x: hidden;
+        }
+
+        /* চিঠির প্যাটার্ন: মাঝে সাদা ও প্রান্তে হালকা পিঙ্ক ফেইড */
+        .letter-envelope {
+            width: 100%;
+            max-width: 460px;
+            min-height: 560px;
+            background: radial-gradient(ellipse at center, 
+                #ffffff 0%, 
+                #fff5f7 40%, 
+                #fce7f3 75%, 
+                #f9a8d4 100%
+            );
+            border-radius: 12px;
+            padding: 35px 25px;
+            position: relative;
+            border: 1px solid rgba(244, 114, 182, 0.4);
+            box-shadow: 
+                0 0 0 6px #fff9fa,
+                0 0 0 9px rgba(244, 114, 182, 0.35),
+                0 20px 40px rgba(219, 39, 119, 0.25),
+                inset 0 0 40px rgba(244, 114, 182, 0.35);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* পুরোনো চিঠির বর্ডার দাগ */
+        .letter-envelope::before {
+            content: "";
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            border: 1px dashed rgba(219, 39, 119, 0.35);
+            pointer-events: none;
+            border-radius: 6px;
+        }
+
+        .step {
+            display: none;
+            position: relative;
+            z-index: 2;
+            animation: unfoldLetter 0.6s ease-in-out forwards;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        @keyframes unfoldLetter {
+            from { 
+                opacity: 0; 
+                transform: translateY(10px) scale(0.98); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
+        }
+
+        h2 {
+            color: #9d174d;
+            font-size: 23px;
+            margin-bottom: 18px;
+            font-weight: 700;
+        }
+
+        p {
+            color: #4a2838;
+            font-size: 15.5px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .input-group {
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            color: #831843;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #f472b6;
+            outline: none;
+            font-size: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #831843;
+        }
+
+        .input-group input:focus {
+            border-color: #db2777;
+            box-shadow: 0 0 10px rgba(244, 114, 182, 0.4);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 26px;
+            border: none;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #f472b6, #db2777);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(219, 39, 119, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.04);
+            background: linear-gradient(135deg, #ec4899, #be185d);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.85);
+            color: #9d174d;
+            border: 1px solid #fbcfe8;
+        }
+
+        .paper-content {
+            text-align: left;
+            padding: 10px 5px;
+        }
+
+        .paper-content h3 {
+            color: #9d174d;
+            margin-bottom: 12px;
+            font-size: 19px;
+        }
+
+        .sign {
+            text-align: right;
+            font-weight: bold;
+            color: #9d174d;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+
+        /* বড় হার্ট বাটন */
+        .heart-btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px auto 20px auto;
+        }
+
+        .heart-btn {
+            font-size: 140px;
+            cursor: pointer;
+            user-select: none;
+            line-height: 1;
+            filter: drop-shadow(0 6px 18px rgba(219, 39, 119, 0.45));
+            animation: heartbeat 1.6s infinite ease-in-out;
+            display: inline-block;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.12); }
+            100% { transform: scale(1); }
+        }
+
+        .grow-animation {
+            transform: scale(3.5) !important;
+            opacity: 0;
+            transition: all 0.7s ease-in-out !important;
+        }
+
+        .zoom-text {
+            font-size: 25px;
+            color: #9d174d;
+            font-weight: bold;
+            margin: 15px 0;
+            line-height: 1.5;
+            animation: zoomFade 0.8s ease forwards;
+        }
+
+        @keyframes zoomFade {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .couple-card {
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px dashed #f472b6;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+
+        .couple-names {
+            font-size: 18px;
+            color: #9d174d;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="letter-envelope">
+
+    <!-- ধাপ ১ -->
+    <div class="step active" id="step1">
+        <h2>💌 হৃদয়ের ডাক 💌</h2>
+        <div class="input-group">
+            <label>তোমার নাম:</label>
+            <input type="text" id="userName" value="বাবাই">
+        </div>
+        <div class="input-group">
+            <label>প্রিয় মানুষটির নাম:</label>
+            <input type="text" id="loverName" value="ত্রিশা">
+        </div>
+        <p style="margin-top: 15px; font-weight: 600; color: #9d174d;">তুমি কি তাকে ভালোবাসো?</p>
+        <div class="btn-group">
+            <button class="btn-primary" onclick="nextStep(2)">ভালোবাসি ❤️</button>
+            <button class="btn-secondary" onclick="alert('সত্যিই কি ভালোবাসো না? আরেকবার ভেবে দেখো! 🌸')">ভালোবাসি না 💔</button>
+        </div>
+    </div>
+
+    <!-- ধাপ ২ -->
+    <div class="step" id="step2">
+        <h2>💌 একটি প্রতিশ্রুতি</h2>
+        <p style="font-size: 19px; color: #9d174d; font-weight: bold; margin: 30px 0;">
+            "আমি তাকে ভালোবাসি"
+        </p>
+        <div style="background: rgba(255, 255, 255, 0.6); padding: 16px; border-radius: 8px; border: 1px solid #fbcfe8; margin-bottom: 22px;">
+            <p style="color: #831843; margin: 0; font-weight: 600;">
+                তুমি কি সত্যি ভালোবা��ো?
+            </p>
+        </div>
+        <div class="btn-group">
+            <button class="btn-primary" onclick="nextStep(3)">ভালোবাসি ❤️</button>
+        </div>
+    </div>
+
+    <!-- ধাপ ३ -->
+    <div class="step" id="step3">
+        <div class="paper-content">
+            <h3>প্রিয় <span id="letterName">ত্রিশা</span>,</h3>
+            <p>
+                আমার সাথে তোমার প্রথম দেখা হয়েছিল <strong>২৮ এপ্রিল ২০২৪</strong>। আজ <span id="currentDateText" style="color: #9d174d; font-weight: bold;"></span>, এতগুলো দিন তোমার সাথে আছি।
+            </p>
+            <p>
+                তুমি আমাকে ভালোবাসো না ভালোবাসো, আমি তোমাকে অনেক ভালোবাসি। তুমি আমার কথা শোনো না, নিজের মতো যা ই���্ছে করো—তাতে আমার ভীষণ খারাপ লাগে। তুমি একটু আমার কথা শোনো, এটাই চাই। প্লিজ আমার কথা শোনো...
+            </p>
+            <div class="sign">
+                — <span id="signName">বাবাই</span>
+            </div>
+        </div>
+
+        <button class="btn-primary" style="margin-top: 15px;" onclick="nextStep(4)">
+            এমন ভাবে আরও এগিয়ে যেতে চাই তোমার সাথে ✨
+        </button>
+    </div>
+
+    <!-- ধাপ ४ -->
+    <div class="step" id="step4">
+        <h2>আমাদের বন্ধন 💕</h2>
+        <p>চিঠির মোহরে স্পর্শ করো</p>
+        <div class="heart-btn-container">
+            <div class="heart-btn" id="heart1" onclick="animateAndNext('heart1', 5)">💖</div>
+        </div>
+        <div class="zoom-text"><span id="couple">ত্রিশা + বাবাই</span></div>
+    </div>
+
+    <!-- ধাপ ५ -->
+    <div class="step" id="step5">
+        <h2>সেই প্রথম দিন 🌸</h2>
+        <p>চিঠির পাতায় স্পর্শ করো</p>
+        <div class="heart-btn-container">
+            <div class="heart-btn" id="heart2" onclick="animateAndNext('heart2', 6)">❤️</div>
+        </div>
+        <div class="zoom-text">
+            প্রথম দেখার তারিখ:<br>
+            <span style="color: #db2777;">२८ এপ্রিল २०२४</span>
+        </div>
+    </div>
+
+    <!-- ধাপ ६ -->
+    <div class="step" id="step6">
+        <h2>আজকের শুভক্ষণ 🗓️</h2>
+        <p>পরের পাতায় যেতে স্পর্শ করো</p>
+        <div class="heart-btn-container">
+            <div class="heart-btn" id="heart3" onclick="animateAndNext('heart3', 7)">💘</div>
+        </div>
+        <div class="zoom-text">
+            আজকের তারিখ:<br>
+            <span id="todayDisplay" style="color: #db2777;"></span>
+        </div>
+    </div>
+
+    <!-- ধাপ ७ -->
+    <div class="step" id="step7">
+        <h2>ভালোবাসার পূর্ণতা 💍</h2>
+
+        <div class="couple-card">
+            <div class="couple-names">পাত্র: <span id="groom">বাবাই দেবনাথ</span></div>
+            <div class="couple-names">পাত্রী: <span id="bride">ত্রিশা দেবনাথ</span></div>
+        </div>
+
+        <div class="paper-content">
+            <p>
+                আমাদের সম্পর্কের এতগুলো দিন পূর্ণ হলো। এভাবে যেন সারাজীবন একে অপরের পা��ে থাকতে পারি, এভাবেই যেন আমাদের ভালোবাসা পূর্ণতা পায়।
+            </p>
+            <p>
+                আমাদের প্রথম দেখা তোমার বাড়িতে, তোমার দিদির বিয়েতে—এখনও মনে আছে।<br>
+                <strong>তারিখ ছিল: २८ এপ্রিল २०२४</strong>
+            </p>
+            <p style="color: #9d174d; font-weight: 600; margin-top: 8px;">
+                তুমি নীল-গোলাপি রঙের শাড়ি পরেছিলে, আর আমি পাঞ্জাবি... তোমার কি মনে আছে?
+            </p>
+        </div>
+
+        <div class="heart-btn-container">
+            <div class="heart-btn" id="heart4" onclick="showFinalMessage()">💞</div>
+        </div>
+        
+        <div id="finalText" style="display:none; font-size: 17px; color: #831843; font-weight: bold; line-height: 1.8; margin-top: 15px; padding: 12px; background: rgba(255,255,255,0.85); border-radius: 8px; border: 1px dashed #f472b6; animation: zoomFade 0.8s ease;">
+            "এভাবে তোমার হাত ধরে সারাজীবন পার করতে চাই তোমার ভালোবাসা..." 💖💍
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function getBengaliDate() {
+        const today = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return today.toLocaleDateString('bn-BD', options);
+    }
+
+    window.onload = function() {
+        const banglaToday = getBengaliDate();
+        document.getElementById('currentDateText').innerText = banglaToday;
+        document.getElementById('todayDisplay').innerText = banglaToday;
+        updateNames();
+    };
+
+    function updateNames() {
+        const userName = document.getElementById('userName').value;
+        const loverName = document.getElementById('loverName').value;
+        
+        document.getElementById('letterName').innerText = loverName;
+        document.getElementById('signName').innerText = userName;
+        document.getElementById('couple').innerText = loverName + ' + ' + userName;
+        document.getElementById('groom').innerText = userName + ' দেবনাথ';
+        document.getElementById('bride').innerText = loverName + ' দেবনাথ';
+    }
+
+    document.getElementById('userName').addEventListener('change', updateNames);
+    document.getElementById('loverName').addEventListener('change', updateNames);
+
+    function nextStep(stepNumber) {
+        document.querySelectorAll('.step').forEach(step => {
+            step.classList.remove('active');
+        });
+        const next = document.getElementById('step' + stepNumber);
+        if (next) {
+            next.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+    }
+
+    function animateAndNext(elementId, nextStepNumber) {
+        const el = document.getElementById(elementId);
+        el.classList.add('grow-animation');
+        setTimeout(() => {
+            el.classList.remove('grow-animation');
+            nextStep(nextStepNumber);
+        }, 600);
+    }
+
+    function showFinalMessage() {
+        const finalBox = document.getElementById('finalText');
+        finalBox.style.display = 'block';
+        setTimeout(() => {
+            finalBox.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+    }
+</script>
+
+</body>
+</html>
