@@ -88,6 +88,18 @@
             font-size: 23px;
             margin-bottom: 18px;
             font-weight: 700;
+            animation: slideInDown 0.6s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         p {
@@ -95,11 +107,35 @@
             font-size: 15.5px;
             line-height: 1.8;
             margin-bottom: 15px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .input-group {
             margin-bottom: 16px;
             text-align: left;
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .input-group label {
@@ -119,11 +155,13 @@
             font-size: 15px;
             background: rgba(255, 255, 255, 0.95);
             color: #831843;
+            transition: all 0.3s ease;
         }
 
         .input-group input:focus {
             border-color: #db2777;
             box-shadow: 0 0 10px rgba(244, 114, 182, 0.4);
+            transform: scale(1.02);
         }
 
         .btn-group {
@@ -131,6 +169,7 @@
             gap: 12px;
             justify-content: center;
             margin-top: 20px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
         }
 
         button {
@@ -150,25 +189,51 @@
         }
 
         .btn-primary:hover {
-            transform: scale(1.04);
+            transform: scale(1.08);
             background: linear-gradient(135deg, #ec4899, #be185d);
+            box-shadow: 0 6px 25px rgba(219, 39, 119, 0.5);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.96);
         }
 
         .btn-secondary {
             background: rgba(255, 255, 255, 0.85);
             color: #9d174d;
             border: 1px solid #fbcfe8;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(244, 114, 182, 0.3);
         }
 
         .paper-content {
             text-align: left;
             padding: 10px 5px;
+            animation: fadeInUp 0.8s ease-out;
         }
 
         .paper-content h3 {
             color: #9d174d;
             margin-bottom: 12px;
             font-size: 19px;
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        .paper-content p {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .paper-content p:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .paper-content p:nth-child(3) {
+            animation-delay: 0.4s;
         }
 
         .sign {
@@ -177,6 +242,18 @@
             color: #9d174d;
             font-size: 16px;
             margin-top: 15px;
+            animation: fadeInRight 0.8s ease-out 0.6s both;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         /* বড় হার্ট বাটন */
@@ -195,6 +272,12 @@
             filter: drop-shadow(0 6px 18px rgba(219, 39, 119, 0.45));
             animation: heartbeat 1.6s infinite ease-in-out;
             display: inline-block;
+            transition: all 0.2s ease;
+        }
+
+        .heart-btn:hover {
+            filter: drop-shadow(0 8px 25px rgba(219, 39, 119, 0.6));
+            transform: scale(1.15);
         }
 
         @keyframes heartbeat {
@@ -229,6 +312,25 @@
             border-radius: 8px;
             padding: 12px;
             margin-bottom: 15px;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .couple-card:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(244, 114, 182, 0.3);
+            transition: all 0.3s ease;
         }
 
         .couple-names {
@@ -236,6 +338,189 @@
             color: #9d174d;
             font-weight: bold;
             margin-bottom: 4px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .couple-names:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        /* ফ্লোটিং হার্ট কণ এনিমেশন */
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            font-size: 30px;
+            animation: float-up 3s ease-in forwards;
+            opacity: 0.8;
+        }
+
+        @keyframes float-up {
+            0% {
+                opacity: 0.8;
+                transform: translateY(0) translateX(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-150px) translateX(30px) scale(0.5);
+            }
+        }
+
+        /* পালস এনিমেশন */
+        .pulse-animation {
+            animation: pulse 0.6s ease-out;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* স্পিন এনিমেশন */
+        .spin-animation {
+            animation: spin 0.8s ease-out;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg) scale(1);
+            }
+            50% {
+                transform: rotate(180deg) scale(1.1);
+            }
+            100% {
+                transform: rotate(360deg) scale(1);
+            }
+        }
+
+        /* শাইন ইফেক্ট */
+        .shine-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shine-effect::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        /* ঝলমলাহট এনিমেশন */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            animation: sparkle-fade 1s ease-out forwards;
+        }
+
+        @keyframes sparkle-fade {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+
+        /* বাউন্স এনিমেশন */
+        .bounce-in {
+            animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* রোটেট এনিমেশন */
+        .rotate-in {
+            animation: rotateIn 0.6s ease-out;
+        }
+
+        @keyframes rotateIn {
+            from {
+                opacity: 0;
+                transform: rotate(-10deg) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: rotate(0) scale(1);
+            }
+        }
+
+        /* ফ্লিপ এনিমেশন */
+        .flip {
+            animation: flip 0.6s ease-out;
+        }
+
+        @keyframes flip {
+            0% {
+                transform: rotateY(0deg);
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+                transform: rotateY(90deg);
+            }
+            100% {
+                transform: rotateY(0deg);
+                opacity: 1;
+            }
+        }
+
+        /* ঝ���লমিলি প্রভাব */
+        .glimmer {
+            animation: glimmer 2s ease-in-out infinite;
+        }
+
+        @keyframes glimmer {
+            0%, 100% {
+                text-shadow: 0 0 5px rgba(219, 39, 119, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(219, 39, 119, 0.8);
+            }
+        }
+
+        /* কনফেটি এনিমেশন */
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -245,7 +530,7 @@
 
     <!-- ধাপ ১ -->
     <div class="step active" id="step1">
-        <h2>💌 হৃদয়ের ডাক 💌</h2>
+        <h2 class="glimmer">💌 হৃদয়ের ডাক 💌</h2>
         <div class="input-group">
             <label>তোমার নাম:</label>
             <input type="text" id="userName" value="বাবাই">
@@ -256,24 +541,24 @@
         </div>
         <p style="margin-top: 15px; font-weight: 600; color: #9d174d;">তুমি কি তাকে ভালোবাসো?</p>
         <div class="btn-group">
-            <button class="btn-primary" onclick="nextStep(2)">ভালোবাসি ❤️</button>
+            <button class="btn-primary" onclick="nextStep(2); createFloatingHearts()">ভালোবাসি ❤️</button>
             <button class="btn-secondary" onclick="alert('সত্যিই কি ভালোবাসো না? আরেকবার ভেবে দেখো! 🌸')">ভালোবাসি না 💔</button>
         </div>
     </div>
 
     <!-- ধাপ ২ -->
     <div class="step" id="step2">
-        <h2>💌 একটি প্রতিশ্রুতি</h2>
-        <p style="font-size: 19px; color: #9d174d; font-weight: bold; margin: 30px 0;">
+        <h2 class="pulse-animation">💌 একটি প্রতিশ্রুতি</h2>
+        <p style="font-size: 19px; color: #9d174d; font-weight: bold; margin: 30px 0; animation: bounceIn 0.8s ease-out;">
             "আমি তাকে ভালোবাসি"
         </p>
-        <div style="background: rgba(255, 255, 255, 0.6); padding: 16px; border-radius: 8px; border: 1px solid #fbcfe8; margin-bottom: 22px;">
+        <div style="background: rgba(255, 255, 255, 0.6); padding: 16px; border-radius: 8px; border: 1px solid #fbcfe8; margin-bottom: 22px; animation: slideUp 0.6s ease-out;">
             <p style="color: #831843; margin: 0; font-weight: 600;">
-                তুমি কি সত্যি ভালোবা��ো?
+                তুমি কি সত্যি ভালোবাসো?
             </p>
         </div>
         <div class="btn-group">
-            <button class="btn-primary" onclick="nextStep(3)">ভালোবাসি ❤️</button>
+            <button class="btn-primary" onclick="nextStep(3); createFloatingHearts()">ভালোবাসি ❤️</button>
         </div>
     </div>
 
@@ -282,24 +567,24 @@
         <div class="paper-content">
             <h3>প্রিয় <span id="letterName">ত্রিশা</span>,</h3>
             <p>
-                আমার সাথে তোমার প্রথম দেখা হয়েছিল <strong>২৮ এপ্রিল ২০২৪</strong>। আজ <span id="currentDateText" style="color: #9d174d; font-weight: bold;"></span>, এতগুলো দিন তোমার সাথে আছি।
+                আমার সাথে তোমার প্রথম দেখা হয়েছিল <strong>२८ এপ্রিল २०२४</strong>। আজ <span id="currentDateText" style="color: #9d174d; font-weight: bold;"></span>, এতগুলো দিন তোমার সাথে আছি।
             </p>
             <p>
-                তুমি আমাকে ভালোবাসো না ভালোবাসো, আমি তোমাকে অনেক ভালোবাসি। তুমি আমার কথা শোনো না, নিজের মতো যা ই���্ছে করো—তাতে আমার ভীষণ খারাপ লাগে। তুমি একটু আমার কথা শোনো, এটাই চাই। প্লিজ আমার কথা শোনো...
+                তুমি আমাকে ভালোবাসো না ভালোবাসো, আমি তোমাকে অনেক ভালোবাসি। তুমি আমার কথা শোনো না, নিজের মতো যা ইচ্ছে করো—তাতে আমার ভীষণ খারাপ লাগে। তুমি একটু আমার কথা শোনো, এটাই চাই। প্লিজ আমার কথা শোনো...
             </p>
             <div class="sign">
                 — <span id="signName">বাবাই</span>
             </div>
         </div>
 
-        <button class="btn-primary" style="margin-top: 15px;" onclick="nextStep(4)">
+        <button class="btn-primary" style="margin-top: 15px;" onclick="nextStep(4); createFloatingHearts()">
             এমন ভাবে আরও এগিয়ে যেতে চাই তোমার সাথে ✨
         </button>
     </div>
 
     <!-- ধাপ ४ -->
     <div class="step" id="step4">
-        <h2>আমাদের বন্ধন 💕</h2>
+        <h2 class="rotate-in">আমাদের বন্ধন 💕</h2>
         <p>চিঠির মোহরে স্পর্শ করো</p>
         <div class="heart-btn-container">
             <div class="heart-btn" id="heart1" onclick="animateAndNext('heart1', 5)">💖</div>
@@ -309,7 +594,7 @@
 
     <!-- ধাপ ५ -->
     <div class="step" id="step5">
-        <h2>সেই প্রথম দিন 🌸</h2>
+        <h2 class="spin-animation">সেই প্রথম দিন 🌸</h2>
         <p>চিঠির পাতায় স্পর্শ করো</p>
         <div class="heart-btn-container">
             <div class="heart-btn" id="heart2" onclick="animateAndNext('heart2', 6)">❤️</div>
@@ -322,7 +607,7 @@
 
     <!-- ধাপ ६ -->
     <div class="step" id="step6">
-        <h2>আজকের শুভক্ষণ 🗓️</h2>
+        <h2 class="bounce-in">আজকের শুভক্ষণ 🗓️</h2>
         <p>পরের পাতায় যেতে স্পর্শ করো</p>
         <div class="heart-btn-container">
             <div class="heart-btn" id="heart3" onclick="animateAndNext('heart3', 7)">💘</div>
@@ -335,16 +620,16 @@
 
     <!-- ধাপ ७ -->
     <div class="step" id="step7">
-        <h2>ভালোবাসার পূর্ণতা 💍</h2>
+        <h2 class="flip">ভালোবাসার পূর্ণতা 💍</h2>
 
-        <div class="couple-card">
+        <div class="couple-card shine-effect">
             <div class="couple-names">পাত্র: <span id="groom">বাবাই দেবনাথ</span></div>
             <div class="couple-names">পাত্রী: <span id="bride">ত্রিশা দেবনাথ</span></div>
         </div>
 
         <div class="paper-content">
             <p>
-                আমাদের সম্পর্কের এতগুলো দিন পূর্ণ হলো। এভাবে যেন সারাজীবন একে অপরের পা��ে থাকতে পারি, এভাবেই যেন আমাদের ভালোবাসা পূর্ণতা পায়।
+                আমাদের সম্পর্কের এতগুলো দিন পূর্ণ হলো। এভাবে যেন সারাজীবন একে অপরের পাশে থাকতে পারি, এভাবেই যেন আমাদের ভালোবাসা পূর্ণতা পায়।
             </p>
             <p>
                 আমাদের প্রথম দেখা তোমার বাড়িতে, তোমার দিদির বিয়েতে—এখনও মনে আছে।<br>
@@ -408,19 +693,86 @@
     function animateAndNext(elementId, nextStepNumber) {
         const el = document.getElementById(elementId);
         el.classList.add('grow-animation');
+        
+        // কণা এনিমেশন তৈরি করুন
+        for (let i = 0; i < 8; i++) {
+            createSparkles(el);
+        }
+        
         setTimeout(() => {
             el.classList.remove('grow-animation');
             nextStep(nextStepNumber);
+            createFloatingHearts();
         }, 600);
     }
 
     function showFinalMessage() {
         const finalBox = document.getElementById('finalText');
         finalBox.style.display = 'block';
+        finalBox.classList.add('pulse-animation');
+        
+        // পার্টিকেল ইফেক্ট তৈরি করুন
+        for (let i = 0; i < 15; i++) {
+            createConfetti();
+        }
+        
         setTimeout(() => {
             finalBox.scrollIntoView({ behavior: 'smooth' });
         }, 100);
     }
+
+    // ফ্লোটিং হার্ট তৈরি করুন
+    function createFloatingHearts() {
+        const hearts = ['❤️', '💕', '💖', '💗', '💝'];
+        
+        for (let i = 0; i < 5; i++) {
+            const heart = document.createElement('div');
+            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.className = 'floating-heart';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.top = '50%';
+            heart.style.fontSize = (20 + Math.random() * 30) + 'px';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 3000);
+        }
+    }
+
+    // স্পার্কল কণা তৈরি করুন
+    function createSparkles(element) {
+        const sparkle = document.createElement('div');
+        sparkle.textContent = '✨';
+        sparkle.className = 'sparkle';
+        sparkle.style.left = element.offsetLeft + Math.random() * 100 + 'px';
+        sparkle.style.top = element.offsetTop + Math.random() * 100 + 'px';
+        sparkle.style.fontSize = Math.random() * 20 + 10 + 'px';
+        document.body.appendChild(sparkle);
+        
+        setTimeout(() => sparkle.remove(), 1000);
+    }
+
+    // কনফেটি তৈরি করুন
+    function createConfetti() {
+        const confetti = document.createElement('div');
+        confetti.textContent = ['🎉', '🎊', '✨', '💫', '⭐'][Math.floor(Math.random() * 5)];
+        confetti.style.position = 'fixed';
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.top = '-50px';
+        confetti.style.fontSize = '30px';
+        confetti.style.pointerEvents = 'none';
+        confetti.style.animation = `fall ${2 + Math.random() * 2}s ease-in forwards`;
+        
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 3000);
+    }
+
+    // বাটন ক্লিকে কাঁপুনি ইফেক্ট
+    document.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', function() {
+            this.classList.add('pulse-animation');
+            setTimeout(() => this.classList.remove('pulse-animation'), 600);
+        });
+    });
 </script>
 
 </body>
